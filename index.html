@@ -13,6 +13,7 @@
     />
 
     <title>Studio 96 Map of Love</title>
+    
     <style>
         body{
             margin: 0;
@@ -22,19 +23,28 @@
             height: 100vh;
             width: 100vw;
         }
-        .marker {
-            background-image: url('D:\Business\Studio96\MapWebsite\phone_GPS_icon.png');
+    </style>
+</head>
+
+<body>
+    <style>
+        #marker {
+            background-image: url('phone_GPS_icon.png');
             background-size: cover;
             width: 50px;
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
         }
-
+        
+        .mapboxgl-popup {
+            max-width: 200px;
+        }
     </style>
-<script src="script.js" defer> </script>
-</head>
-<body>
+
     <div id='map'></div>
+
+    <script src="script.js" defer> </script>
 </body>
+
 </html>

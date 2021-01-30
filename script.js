@@ -16,15 +16,62 @@ function errorLocation(){
 }
 
 function setupMap(center){
-    const map = new mapboxgl.Map({
+  var oceanbreeze = [-74.076978, 40.586514];
+  
+  const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/indirawrs/ckkeiqmhc114317o2qxul0p2b',
         center: center, 
-        zoom: 5
+        zoom: 13
+      
       });
 
     const nav = new mapboxgl.NavigationControl();
     map.addControl(nav); 
+
+    // [] Attach Popup to a Marker Instance
+    // create the popup
+  var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+    'We spent our days walking through the park and making up songs to my ukulele playing.'
+    );
+    
+    // create DOM element for the marker
+  var el = document.createElement('div');
+    el.id = 'marker';
+        
+    // create the Static Marker
+  new mapboxgl.Marker(el)
+    .setLngLat(oceanbreeze)
+    .setPopup(popup) // sets a popup on this marker
+    .addTo(map);
+
+    
+  // [] Draggable Marker
+
+    // create DOM element for the marker
+    
+  var popupA = new mapboxgl.Popup({ offset: 25 }).setText(
+    'Drag Test.'
+    );
+  
+  var marker = document.createElement('div');
+    marker.id = 'marker'
+    
+  new mapboxgl.Marker(marker,{draggable: true}) 
+      .setLngLat([-74.0070,40.7128])
+      .setPopup(popupA)
+      .addTo(map);
+  
+  
+
+  function onDragEnd() {
+    marker.setPopup(popupA)
+    .addTo(map);
+  }
+    
+    marker.on('dragend', onDragEnd);
+
+
 //this is just a test from the tutorial
     /*var directions = new MapboxDirections({
         accessToken: mapboxgl.accessToken,
